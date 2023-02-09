@@ -1,0 +1,99 @@
+﻿@model ASP.Net_QuestRoom_App.Data.Entities.QuestRoom
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>QuestRoom</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="About" class="control-label"></label>
+                <input asp-for="About" class="form-control" />
+                <span asp-validation-for="About" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TravelTime" class="control-label"></label>
+                <input asp-for="TravelTime" class="form-control" />
+                <span asp-validation-for="TravelTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MinPlayers" class="control-label"></label>
+                <input asp-for="MinPlayers" class="form-control" />
+                <span asp-validation-for="MinPlayers" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaxPlayers" class="control-label"></label>
+                <input asp-for="MaxPlayers" class="form-control" />
+                <span asp-validation-for="MaxPlayers" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MinAgePlayers" class="control-label"></label>
+                <input asp-for="MinAgePlayers" class="form-control" />
+                <span asp-validation-for="MinAgePlayers" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PnonesDb" class="control-label"></label>
+                <input asp-for="PnonesDb" class="form-control" />
+                <span asp-validation-for="PnonesDb" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Company" class="control-label"></label>
+                <input asp-for="Company" class="form-control" />
+                <span asp-validation-for="Company" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Rating" class="control-label"></label>
+                <input asp-for="Rating" class="form-control" />
+                <span asp-validation-for="Rating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LevelOfFear" class="control-label"></label>
+                <input asp-for="LevelOfFear" class="form-control" />
+                <span asp-validation-for="LevelOfFear" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DefficultyLevel" class="control-label"></label>
+                <input asp-for="DefficultyLevel" class="form-control" />
+                <span asp-validation-for="DefficultyLevel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Logo" class="control-label"></label>
+                <input asp-for="Logo" type="file" accept="image/*" value="@Model.Logo" name="logo" class="form-control" />
+                <span asp-validation-for="Logo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Panel">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
