@@ -1,9 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
-namespace ASP.Net_QuestRoom_App.Data.Entities
+namespace ASP.Net_QuestRoom_App.Data.Entities.DTO
 {
-    public class QuestRoom
+    public class QuestRoomDTO
     {
         public int Id { get; set; }
         public string Name { get; set; } = default!;

@@ -1,4 +1,5 @@
-﻿@model ASP.Net_QuestRoom_App.Data.Entities.QuestRoom
+﻿@*@model ASP.Net_QuestRoom_App.Data.Entities.QuestRoom*@
+@model CreateViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -13,69 +14,69 @@
         <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <label asp-for="QuestRoom.Name" class="control-label"></label>
+                <input asp-for="QuestRoom.Name" class="form-control" />
+                <span asp-validation-for="QuestRoom.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="About" class="control-label"></label>
-                <input asp-for="About" class="form-control" />
-                <span asp-validation-for="About" class="text-danger"></span>
+                <label asp-for="QuestRoom.About" class="control-label"></label>
+                <input asp-for="QuestRoom.About" class="form-control" />
+                <span asp-validation-for="QuestRoom.About" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TravelTime" class="control-label"></label>
-                <input asp-for="TravelTime" class="form-control" />
-                <span asp-validation-for="TravelTime" class="text-danger"></span>
+                <label asp-for="QuestRoom.TravelTime" class="control-label"></label>
+                <input asp-for="QuestRoom.TravelTime" class="form-control" />
+                <span asp-validation-for="QuestRoom.TravelTime" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MinPlayers" class="control-label"></label>
-                <input asp-for="MinPlayers" class="form-control" />
-                <span asp-validation-for="MinPlayers" class="text-danger"></span>
+                <label asp-for="QuestRoom.MinPlayers" class="control-label"></label>
+                <input asp-for="QuestRoom.MinPlayers" class="form-control" />
+                <span asp-validation-for="QuestRoom.MinPlayers" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MaxPlayers" class="control-label"></label>
-                <input asp-for="MaxPlayers" class="form-control" />
-                <span asp-validation-for="MaxPlayers" class="text-danger"></span>
+                <label asp-for="QuestRoom.MaxPlayers" class="control-label"></label>
+                <input asp-for="QuestRoom.MaxPlayers" class="form-control" />
+                <span asp-validation-for="QuestRoom.MaxPlayers" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MinAgePlayers" class="control-label"></label>
-                <input asp-for="MinAgePlayers" class="form-control" />
-                <span asp-validation-for="MinAgePlayers" class="text-danger"></span>
+                <label asp-for="QuestRoom.MinAgePlayers" class="control-label"></label>
+                <input asp-for="QuestRoom.MinAgePlayers" class="form-control" />
+                <span asp-validation-for="QuestRoom.MinAgePlayers" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Address" class="control-label"></label>
-                <input asp-for="Address" class="form-control" />
-                <span asp-validation-for="Address" class="text-danger"></span>
+                <label asp-for="QuestRoom.Address" class="control-label"></label>
+                <input asp-for="QuestRoom.Address" class="form-control" />
+                <span asp-validation-for="QuestRoom.Address" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PnonesDb" class="control-label"></label>
-                <input asp-for="PnonesDb" class="form-control" />
-                <span asp-validation-for="PnonesDb" class="text-danger"></span>
+                <label asp-for="QuestRoom.PnonesDb" class="control-label"></label>
+                <input asp-for="QuestRoom.PnonesDb" class="form-control" />
+                <span asp-validation-for="QuestRoom.PnonesDb" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
+                <label asp-for="QuestRoom.Email" class="control-label"></label>
+                <input asp-for="QuestRoom.Email" class="form-control" />
+                <span asp-validation-for="QuestRoom.Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Company" class="control-label"></label>
-                <input asp-for="Company" class="form-control" />
-                <span asp-validation-for="Company" class="text-danger"></span>
+                <label asp-for="QuestRoom.Company" class="control-label"></label>
+                <input asp-for="QuestRoom.Company" class="form-control" />
+                <span asp-validation-for="QuestRoom.Company" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Rating" class="control-label"></label>
-                <input asp-for="Rating" class="form-control" />
-                <span asp-validation-for="Rating" class="text-danger"></span>
+                <label asp-for="QuestRoom.Rating" class="control-label"></label>
+                <input asp-for="QuestRoom.Rating" class="form-control" />
+                <span asp-validation-for="QuestRoom.Rating" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LevelOfFear" class="control-label"></label>
-                <input asp-for="LevelOfFear" class="form-control" />
-                <span asp-validation-for="LevelOfFear" class="text-danger"></span>
+                <label asp-for="QuestRoom.LevelOfFear" class="control-label"></label>
+                <input asp-for="QuestRoom.LevelOfFear" class="form-control" />
+                <span asp-validation-for="QuestRoom.LevelOfFear" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DefficultyLevel" class="control-label"></label>
-                <input asp-for="DefficultyLevel" class="form-control" />
-                <span asp-validation-for="DefficultyLevel" class="text-danger"></span>
+                <label asp-for="QuestRoom.DefficultyLevel" class="control-label"></label>
+                <input asp-for="QuestRoom.DefficultyLevel" class="form-control" />
+                <span asp-validation-for="QuestRoom.DefficultyLevel" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Logo" class="control-label"></label>

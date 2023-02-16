@@ -1,6 +1,9 @@
 ﻿using ASP.Net_QuestRoom_App.Data.Context;
 using ASP.Net_QuestRoom_App.Data.Entities;
+using ASP.Net_QuestRoom_App.Data.Entities.DTO;
 using ASP.Net_QuestRoom_App.Models.ViewModel;
+using ASP.Net_QuestRoom_App.Models.ViewModel.Admin;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -11,10 +14,12 @@ namespace ASP.Net_QuestRoom_App.Controllers
     public class AdminController : Controller
     {
         private readonly QuestRoomContext _context;
+        private readonly IMapper _mapper;
 
-        public AdminController(QuestRoomContext context)
+        public AdminController(QuestRoomContext context, IMapper mapper)
         {
             this._context = context;
+            this._mapper = mapper;
         }
 
         // GET: AdminController
@@ -129,20 +134,25 @@ namespace ASP.Net_QuestRoom_App.Controllers
         // POST: AdminController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,About,TravelTime,MinPlayers,MaxPlayers,MinAgePlayers,Address,PnonesDb,Email,Company,Rating,LevelOfFear,DefficultyLevel,Logo")] QuestRoom questRoom, IFormFile logo)
+        public async Task<IActionResult> Create(CreateViewModel vM)
         {
             if (ModelState.IsValid)
             {
-                using (MemoryStream ms = new MemoryStream())
+                //using (MemoryStream ms = new MemoryStream())
+                //{
+                //    logo.CopyTo(ms);
+                //    questRoom.Logo = ms.ToArray();
+                //}
+                using (BinaryReader br = new BinaryReader(vM.Logo.OpenReadStream()))
                 {
-                    logo.CopyTo(ms);
-                    questRoom.Logo = ms.ToArray();
+                    vM.QuestRoom.Logo = br.ReadBytes((int)vM.Logo.Length);
                 }
-                _context.Add(questRoom);
+                QuestRoom createdRoom = _mapper.Map<QuestRoom>(vM.QuestRoom);
+                _context.Add(createdRoom);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Panel));
             }
-            return View(questRoom);
+            return View(vM);
         }
 
         // GET: AdminController/Edit/5
@@ -158,15 +168,19 @@ namespace ASP.Net_QuestRoom_App.Controllers
             {
                 return NotFound();
             }
-            return View(questRoom);
+            EditViewModel vM = new EditViewModel()
+            {
+                QuestRoom = _mapper.Map<QuestRoomDTO>(questRoom)
+            };
+            return View(vM);
         }
 
         // POST: AdminController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,About,TravelTime,MinPlayers,MaxPlayers,MinAgePlayers,Address,PnonesDb,Email,Company,Rating,LevelOfFear,DefficultyLevel,Logo")] QuestRoom questRoom, IFormFile logo)
+        public async Task<IActionResult> Edit(int id, EditViewModel vM)
         {
-            if (id != questRoom.Id)
+            if (id != vM.QuestRoom.Id)
             {
                 return NotFound();
             }
@@ -175,17 +189,25 @@ namespace ASP.Net_QuestRoom_App.Controllers
             {
                 try
                 {
-                    using(MemoryStream ms = new MemoryStream())
+                    //using (MemoryStream ms = new MemoryStream())
+                    //{
+                    //    logo.CopyTo(ms);
+                    //    questRoom.Logo = ms.ToArray();
+                    //}
+                    if(vM.Logotype is not null)
                     {
-                        logo.CopyTo(ms);
-                        questRoom.Logo= ms.ToArray();
+                        using (BinaryReader br = new BinaryReader(vM.Logotype!.OpenReadStream()))
+                        {
+                            vM.QuestRoom.Logo = br.ReadBytes((int)vM.Logotype.Length);
+                        }
                     }
-                    _context.Update(questRoom);
+                    QuestRoom editedRoom = _mapper.Map<QuestRoom>(vM.QuestRoom);
+                    _context.Update(editedRoom);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!QuestRoomExists(questRoom.Id))
+                    if (!QuestRoomExists(vM.QuestRoom.Id))
                     {
                         return NotFound();
                     }
@@ -196,7 +218,7 @@ namespace ASP.Net_QuestRoom_App.Controllers
                 }
                 return RedirectToAction(nameof(Panel));
             }
-            return View(questRoom);
+            return View(vM);
         }
 
         // GET: AdminController/Delete/5

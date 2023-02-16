@@ -1,8 +1,10 @@
+using ASP.Net_QuestRoom_App.AutoMapperProfiles;
 using ASP.Net_QuestRoom_App.Data.Context;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddAutoMapper(typeof(QuestRoomProfiles));
 builder.Services.AddDbContext<QuestRoomContext>
     (options => options.UseSqlServer(builder.Configuration.GetConnectionString("connStr")
     ?? throw new InvalidOperationException("Connection string not set!")));
